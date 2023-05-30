@@ -1,27 +1,18 @@
-import { useState, Component } from "react";
+import { useState, useEffect, Component } from "react";
 import "./App.css";
 
 // This code will be based on function and class components from react
 
 // Function Component
 export default function App() {
-  const monsters = [
-    {
-      name: "Dino",
-    },
-    {
-      name: "Duo",
-    },
-    {
-      name: "Andrei",
-    },
-    {
-      name: "Yihua",
-    },
-    {
-      name: "Eric",
-    },
-  ];
+  const [monsters, setMonsters] = useState([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((users) => setMonsters(users))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <div className="App">
@@ -33,40 +24,39 @@ export default function App() {
 }
 
 // Class Component
-class App extends Component {
-  constructor() {
-    super();
+// class App extends Component {
+//   constructor() {
+//     super();
 
-    this.state = {
-      monsters: [
-        {
-          name: "Dino",
-        },
-        {
-          name: "Duo",
-        },
-        {
-          name: "Andrei",
-        },
-        {
-          name: "Yihua",
-        },
-        {
-          name: "Eric",
-        },
-      ],
-    };
-  }
+//     this.state = {
+//       monsters: [],
+//     };
+//   }
 
-  render() {
-    return (
-      <div className="App">
-        {this.state.monsters.map((monster) => {
-          return <h1>{monster.name}</h1>;
-        })}
-      </div>
-    );
-  }
-}
+//   componentDidMount() {
+//     fetch('https://jsonplaceholder.typicode.com/users')
+//       .then(response => response.json())
+//       .then((users) =>
+//         this.setState(
+//           () => {
+//             return { monsters: users };
+//           },
+//           () => {
+//             console.log(this.state);
+//           }
+//         )
+//       );
+//   }
+
+//   render() {
+//     return (
+//       <div className="App">
+//         {this.state.monsters.map((monster) => {
+//           return <h1>{monster.name}</h1>;
+//         })}
+//       </div>
+//     );
+//   }
+// }
 
 // export default App;
