@@ -1,35 +1,40 @@
 import logo from "./logo.svg";
 import "./App.css";
 
+// This code will be based on function and class components from react
+
+// Function Component
 export default function App() {
-  // We can't use this constructor because it is inside a function component and not a class component.
-  // constructor() {
-  //   super();
-
-  //   this.state = {
-  //     name: "Eric",
-  //   };
-
-  // }
+  const [name, setName] = useState({
+    name: { firstName: "Eric", lastName: "Mbarushimana" },
+    company: "Mourway",
+  });
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        {/* This one we use it with class component */}
-        {/* <p>Hi {this.state.name}</p> */}
-        {/* We'll use this one because we've a function component */}
         <p>Hi Eric</p>
-        {/* This one must also be used with a class component */}
-        {/* <button
-          onClick={() => {
-            this.setState({ name: "Andrei" });
-          }}
-        >
-          Change name
-        </button> */}
         <button>Change name</button>
       </header>
     </div>
   );
 }
+
+// Class Component
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      name: { firstName: 'John', lastName: 'Smith' },
+      company: 'ZTM',
+    };
+  }
+
+  render() {
+    return <div className="App"></div>;
+  }
+}
+
+export default App;
