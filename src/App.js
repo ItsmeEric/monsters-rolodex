@@ -1,22 +1,33 @@
-import logo from "./logo.svg";
+import { useState, Component } from "react";
 import "./App.css";
 
 // This code will be based on function and class components from react
 
 // Function Component
 export default function App() {
-  const [name, setName] = useState({
-    name: { firstName: "Eric", lastName: "Mbarushimana" },
-    company: "Mourway",
-  });
+  const monsters = [
+    {
+      name: "Dino",
+    },
+    {
+      name: "Duo",
+    },
+    {
+      name: "Andrei",
+    },
+    {
+      name: "Yihua",
+    },
+    {
+      name: "Eric",
+    },
+  ];
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hi Eric</p>
-        <button>Change name</button>
-      </header>
+      {monsters.map((monster) => (
+        <h1 key={monster.name}>{monster.name}</h1>
+      ))}
     </div>
   );
 }
@@ -27,14 +38,35 @@ class App extends Component {
     super();
 
     this.state = {
-      name: { firstName: 'John', lastName: 'Smith' },
-      company: 'ZTM',
+      monsters: [
+        {
+          name: "Dino",
+        },
+        {
+          name: "Duo",
+        },
+        {
+          name: "Andrei",
+        },
+        {
+          name: "Yihua",
+        },
+        {
+          name: "Eric",
+        },
+      ],
     };
   }
 
   render() {
-    return <div className="App"></div>;
+    return (
+      <div className="App">
+        {this.state.monsters.map((monster) => {
+          return <h1>{monster.name}</h1>;
+        })}
+      </div>
+    );
   }
 }
 
-export default App;
+// export default App;
