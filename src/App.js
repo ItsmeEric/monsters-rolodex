@@ -16,13 +16,24 @@ export default function App() {
       });
   }, []);
 
+  const handleChange = (event) => {
+    console.log(event.target.value);
+
+    const searchString = event.target.value.toLowerCase();
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLowerCase().includes(searchString);
+    });
+
+    setMonsters(filteredMonsters);
+  };
+
   return (
     <div className="App">
       <input
         className="search-box"
         type="search"
         placeholder="search monsters"
-        onChange={(event) => console.log(event)}
+        onChange={handleChange}
       />
       {monsters.map((monster) => (
         <h1 key={monster.name}>{monster.name}</h1>
@@ -42,8 +53,8 @@ export default function App() {
 //   }
 
 //   componentDidMount() {
-//     fetch('https://jsonplaceholder.typicode.com/users')
-//       .then(response => response.json())
+//     fetch("https://jsonplaceholder.typicode.com/users")
+//       .then((response) => response.json())
 //       .then((users) =>
 //         this.setState(
 //           () => {
@@ -62,8 +73,19 @@ export default function App() {
 //         <input
 //           className="search-box"
 //           type="search"
-//           placeholder = "search monsters"
-//           onChange={(event) => { console.log(event) }} />
+//           placeholder="search monsters"
+//           onChange={(event) => {
+//             console.log(event.target.value);
+//             const searchString = event.target.value.toLocaleLowerCase();
+//             const filteredMonsters = this.state.monsters.filter((monster) => {
+//               return monster.name.toLocaleLowerCase().includes(searchString);
+//             });
+
+//             this.setState(() => {
+//               return { monsters: filteredMonsters };
+//             });
+//           }}
+//         />
 //         {this.state.monsters.map((monster) => {
 //           return <h1>{monster.name}</h1>;
 //         })}
