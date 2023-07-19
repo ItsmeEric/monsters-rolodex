@@ -60,6 +60,7 @@ const App = () => {
     const newFilteredMonsters = monsters.filter((monster) => {
       return monster.name.toLocaleLowerCase().includes(searchField);
     });
+
     setFilteredMonsters(newFilteredMonsters);
   }, [monsters, searchField]);
 
